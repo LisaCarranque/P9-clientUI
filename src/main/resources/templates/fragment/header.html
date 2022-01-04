@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<th:block th:fragment="header">
+
+    <link th:href="@{/static/fontawesome/css/all.css}" rel="stylesheet"> <!--load all styles -->
+    <link rel="shortcut icon" type="image/jpg" th:href="@{/static/img/logo.png}"/>
+    <link rel="stylesheet" href="@{/static/css/tooltip.css}"/>
+
+    <!-- first navbar -->
+    <section class="section-title">
+        <nav class="navbar navbar-custom main-title">
+            <div class="btn-group mb-3">
+                <button type="button" class="btn" onclick="location.href='/index'">
+                    <img th:src="@{/static/img/logo.png}" height="30px" width="30px">
+                </button>
+                <button type="button" class="btn" onclick="location.href='/patient/list'"
+                        data-toggle="tooltip" data-placement="top" title="List">
+                    <img th:src="@{/static/img/list.png}" height="30px" width="30px">
+                </button>
+            </div>
+            <div class="title text-white">
+                Clinique Abernathy
+            </div>
+        </nav>
+    </section>
+    <!-- end of first navbar -->
+
+</th:block>
+</body>
+</html>

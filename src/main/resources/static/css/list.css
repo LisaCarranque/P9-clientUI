@@ -1,0 +1,44 @@
+
+
+/*table*/
+.thead {
+background-color:#66A5AD;
+color:white;
+font-weight:lighter;
+text-align:center;
+}
+.thbody {
+text-align:center;
+}
+
+.table {
+border: 1px solid black !important;
+}
+
+tr, th, td {
+border:none !important;
+}
+
+.custom-th {
+font-weight:normal !important;
+}
+
+.ocean {
+color:#07575B;
+}
+
+.highlighted {
+border: 1px solid lightblue !important;
+}
+
+@media screen and (min-width: 1700px) {
+tr, th, td {
+height:50px;
+}
+}
+
+@media screen and (max-width: 1700px) {
+tr, th, td {
+height:30px;
+}
+}

@@ -1,0 +1,55 @@
+.c1{
+    background-color:#003B46;
+    color:white;
+}
+
+.blue {
+    background-color:#C4DFE6;
+    color:white;
+}
+
+.title {
+    text-align:center;
+    flex:1;
+    padding-right:175px;
+}
+
+.welcome {
+    margin:auto;
+    margin-top:20px;
+    padding-top:100px;
+    height:400px;
+    text-align:center;
+    color:white;
+    font-size:large;
+}
+
+a {
+    text-decoration:none !important;
+    color:white !important;
+}
+
+ .form-input {
+     width: 90%;
+     height:88px;
+     margin:auto;
+}
+
+.navbar-custom {
+    background-color:#07575B;
+}
+
+body {
+    background-color:#66A5AD:
+    height:100%;
+}
+
+img {
+     border-radius: 25px !important;
+     border: 2px solid #73AD21 !important;
+}
+
+.container-edit {
+border:1px solid #66A5AD;
+margin-top:10px;
+}

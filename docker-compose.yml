@@ -1,0 +1,93 @@
+version: "3"
+
+services:
+
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root2021
+    networks:
+      docker-net:
+        ipv4_address: ${IP_MONGODB}
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root2021
+      ME_CONFIG_MONGODB_URL: mongodb://root:root2021@172.23.0.7:27017/
+    networks:
+      docker-net:
+        ipv4_address: ${IP_MONGO_EXPRESS}
+
+  medicalnotes:
+    container_name: medicalnotes
+    image: medicalnotes
+    ports:
+      - "9103:9103"
+    networks:
+      docker-net:
+        ipv4_address: ${IP_MEDICALNOTES}
+    depends_on:
+      - mongodb
+
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=Root@2021
+      - MYSQL_DATABASE=P9
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=User@2021
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=Root@2021 --execute \"SHOW DATABASES;\""
+      interval: 3s
+      timeout: 1s
+      retries: 10
+    networks:
+      docker-net:
+        ipv4_address: ${IP_SQL}
+
+  searchpatient:
+    container_name: searchpatient
+    image: searchpatient
+    ports:
+      - "9104:9104"
+    networks:
+      docker-net:
+        ipv4_address: ${IP_SEARCHPATIENT}
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://${IP_SQL}:3306/P9?serverTimezone=UTC
+    restart: on-failure
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+
+  client-ui:
+    container_name: client-ui
+    image: client-ui
+    ports:
+      - "8080:8080"
+    networks:
+      docker-net:
+        ipv4_address: ${IP_ANALYZE}
+
+networks:
+  docker-net:
+    external: true
+    driver: bridge
+
+

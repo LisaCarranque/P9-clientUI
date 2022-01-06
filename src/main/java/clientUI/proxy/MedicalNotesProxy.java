@@ -15,9 +15,6 @@ import java.util.List;
 @Generated
 public interface MedicalNotesProxy {
 
-/*    @RequestMapping("/patientHistory/list")
-    public List<Note> listNote();*/
-
     @RequestMapping("/patientHistory/add")
     public Note addNote(@RequestBody Note note);
 
@@ -29,12 +26,7 @@ public interface MedicalNotesProxy {
 
     @RequestMapping("/patientHistory/findNotesByUuid/{uuid}")
     public List<Note> findNotesByUuid(@PathVariable String uuid);
-/*
-    @RequestMapping("/patientHistory/findNoteById/{id}")
-    public Optional<Note> findNoteById(@PathVariable String id);
 
-    @RequestMapping("/patientHistory/findNoteByContent/{id}")
-    public Optional<Note> findNoteByContent(@RequestBody String content);*/
 
 }
 

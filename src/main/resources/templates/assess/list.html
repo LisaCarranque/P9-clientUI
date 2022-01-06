@@ -55,10 +55,11 @@
             <div class="form-group">
                 <label for="lastname" class="col-form-label"></label>
                 <select th:field="*{lastname}" id="lastname" class="btn btn-outline highlighted">
-                    <option  th:each="lastname : ${lastnames}" th:value="${lastname}"
-                             th:text="${lastname}"></option>
+                    <option th:each="lastname : ${lastnames}" th:value="${lastname}"
+                            th:text="${lastname}"></option>
                 </select>
-                <button class="btn btn-outline highlighted" type="submit" id="submit"><i class="fas fa-spinner"></i></button>
+                <button class="btn btn-outline highlighted" type="submit" id="submit"><i class="fas fa-spinner"></i>
+                </button>
             </div>
         </form>
     </div>

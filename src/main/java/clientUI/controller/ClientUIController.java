@@ -12,7 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -42,6 +45,7 @@ public class ClientUIController {
 
     /**
      * This method is used to display the welcome view
+     *
      * @return
      */
     @RequestMapping("/")
@@ -51,8 +55,10 @@ public class ClientUIController {
     }
 
     //Patient
+
     /**
      * This method is used to get the list of patients
+     *
      * @param model Java-5-specific interface that defines a holder for model attributes.
      * @return the view patient/list with the list of all patients
      */
@@ -68,13 +74,14 @@ public class ClientUIController {
 
     /**
      * This method is used to add a patient
-     * @param model Java-5-specific interface that defines a holder for model attributes.
+     *
+     * @param model   Java-5-specific interface that defines a holder for model attributes.
      * @param patient the patient to add
      * @return the view patient/list with the list of all patients containing the newly added patient
      */
     @RequestMapping("/patient/add")
     public String addPatient(Model model, @Valid Patient patient) {
-        log.info("Client UI: adding patient: " + patient.getFirstname()  + " with id " + patient.getId());
+        log.info("Client UI: adding patient: " + patient.getFirstname() + " with id " + patient.getId());
         patient.setBirthdate((LocalDate.parse(patient.getBirthdate())).format(formatter));
         searchPatientProxy.addPatientInformation(patient);
         model.addAttribute("patients", searchPatientProxy.home());
@@ -86,8 +93,9 @@ public class ClientUIController {
 
     /**
      * This method is used to get the data of a targeted patient to update
+     *
      * @param model Java-5-specific interface that defines a holder for model attributes.
-     * @param id the id of the targeted patient
+     * @param id    the id of the targeted patient
      * @return the view patient/edit with the field to edit
      */
     @RequestMapping("/patient/update/{id}")
@@ -101,7 +109,8 @@ public class ClientUIController {
 
     /**
      * The method is used to update patient information
-     * @param model Java-5-specific interface that defines a holder for model attributes.
+     *
+     * @param model   Java-5-specific interface that defines a holder for model attributes.
      * @param patient the patient to update
      * @return the view patient/list with the list of all patients containing the newly updated patient
      */
@@ -119,10 +128,12 @@ public class ClientUIController {
 
 
     //Patient History
+
     /**
      * This method is used to list patient history of a patient targeted by uuid
+     *
      * @param model Java-5-specific interface that defines a holder for model attributes.
-     * @param uuid the uuid of the targeted patient
+     * @param uuid  the uuid of the targeted patient
      * @return the view note/list containing the list of notes for this patient
      */
     @RequestMapping("/patientHistory/list/{uuid}")
@@ -137,8 +148,9 @@ public class ClientUIController {
 
     /**
      * This method is responsible for adding a note to patient history
+     *
      * @param model Java-5-specific interface that defines a holder for model attributes.
-     * @param note the note to add to the patient history
+     * @param note  the note to add to the patient history
      * @return the view patient/list with the list of all patients
      */
     @RequestMapping("/patientHistory/add")
@@ -154,8 +166,9 @@ public class ClientUIController {
 
     /**
      * This method is used to get a note to update
+     *
      * @param model Java-5-specific interface that defines a holder for model attributes.
-     * @param id the id of the note to update
+     * @param id    the id of the note to update
      * @return the view note/edit containing the field to edit note information
      */
     @RequestMapping("/patientHistory/update/{id}")
@@ -169,8 +182,9 @@ public class ClientUIController {
 
     /**
      * This method is used to update note information
+     *
      * @param model Java-5-specific interface that defines a holder for model attributes.
-     * @param note the note to update
+     * @param note  the note to update
      * @return the view note/list with the list of all notes for this patient
      */
     @RequestMapping("/patientHistory/update")
@@ -187,10 +201,12 @@ public class ClientUIController {
 
 
     //Analyze
+
     /**
      * This method is used to get an report by patient id
+     *
      * @param model Java-5-specific interface that defines a holder for model attributes.
-     * @param id the id of the targeted patient
+     * @param id    the id of the targeted patient
      * @return the view assess/list containing the patient report
      */
     @RequestMapping("/assess/{id}")
@@ -210,8 +226,9 @@ public class ClientUIController {
 
     /**
      * This method is used to get the report of a patient targeted by lastname
+     *
      * @param patient the patient lastname
-     * @param model Java-5-specific interface that defines a holder for model attributes.
+     * @param model   Java-5-specific interface that defines a holder for model attributes.
      * @return the view assess/list containing the report of this targeted by lastname
      * and each report if several patient have the same lastname
      */
@@ -230,6 +247,7 @@ public class ClientUIController {
 
     /**
      * This method is used to get all reports for all patients
+     *
      * @param model Java-5-specific interface that defines a holder for model attributes.
      * @return the view assess/list containing the list of all reports
      */

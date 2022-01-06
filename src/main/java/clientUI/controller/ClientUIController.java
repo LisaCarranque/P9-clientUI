@@ -239,7 +239,7 @@ public class ClientUIController {
         log.info("Client UI: patient data analyzed for patient with lastname: " + patient.getLastname());
         model.addAttribute("reports", reports);
         model.addAttribute("patients", searchPatientProxy.getAll());
-        model.addAttribute("lastnames", searchPatientProxy.findAllDistinctLastnames());
+        model.addAttribute("lastnames",  searchPatientProxy.findAllDistinctLastnames());
         model.addAttribute("patient", PatientDto.builder().build());
         log.info("Client UI: redirects to assess/list view");
         return "assess/list";
@@ -256,7 +256,7 @@ public class ClientUIController {
         log.info("Client UI: analyzes all patient data");
         List<Report> reports = analyzeDataProxy.analyzeAllPatientData();
         model.addAttribute("reports", reports);
-        model.addAttribute("lastnames", searchPatientProxy.findAllDistinctLastnames());
+        model.addAttribute("lastnames",  searchPatientProxy.findAllDistinctLastnames());
         model.addAttribute("patient", PatientDto.builder().build());
         log.info("Client UI: redirects to assess/list view");
         return "assess/list";

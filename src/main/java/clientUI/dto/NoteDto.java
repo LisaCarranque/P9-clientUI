@@ -1,13 +1,12 @@
-package clientUI.model;
+package clientUI.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
 /**
- * The model of note added to patient history for further analysis
+ * A Data Transfer Object to transfer data for notes
  */
 @Generated
 @Builder
@@ -16,11 +15,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Note {
+public class NoteDto {
 
     String id;
-    @NotEmpty
-    @NonNull
     String content;
     UUID uuid;
 

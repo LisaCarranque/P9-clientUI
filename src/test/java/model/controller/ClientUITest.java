@@ -1,4 +1,4 @@
-package model.clientUI.controller;
+package model.controller;
 
 import clientUI.controller.ClientUIController;
 import clientUI.model.*;
@@ -123,6 +123,16 @@ public class ClientUITest {
                 .uuid(UUID.randomUUID()).gender("F").build());
         clientUI.analyzePatient(model, "1");
         verify(analyzeDataProxy, times(1)).analyzePatientData("1");
+    }
+
+    @Test
+    public void analyzePatientByLastnameTest() {
+        UUID uuid = UUID.randomUUID();
+        Patient patient = Patient.builder().uuid(uuid).id(1).address("1st street").gender(Gender.F)
+                .phone("0000000000").birthdate("2002-12-02").lastname("Smith")
+                .firstname("Leonie").build();
+        clientUI.analyzePatientByLastname(patient, model);
+        verify(analyzeDataProxy, times(1)).analyzePatientDataByLastname("Smith");
     }
 
     @Test

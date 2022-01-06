@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
 /**
@@ -21,6 +22,7 @@ public class Note {
     String id;
     @NotEmpty
     @NonNull
+    @Size(min=1)
     String content;
     UUID uuid;
 

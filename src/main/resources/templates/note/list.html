@@ -57,7 +57,8 @@
             <tr th:each="note : ${notes}">
                 <td th:text="${note.content}"></td>
                 <td>
-                    <button class="btn btn-outline btn-info"><a th:href="@{/patientHistory/update/{id} (id=${note.id})}"><i
+                    <button class="btn btn-outline btn-info"><a
+                            th:href="@{/patientHistory/update/{id} (id=${note.id})}"><i
                             class="far fa-edit"></i></a></button>
                 </td>
             </tr>

@@ -28,26 +28,8 @@
 <div th:insert="fragment/header :: header">...</div>
 
 
-<!--<section>
-    <div class="container">
-        &lt;!&ndash;displays by lastname&ndash;&gt;
-        <div class="row mt-3"><p><i class="fas fa-users ocean"> Select a patient by lastname to display it's report</i>
-        </p></div>
-        <form th:action="@{/assess/lastname}" th:object="${patient}" method="post">
-            <div class="form-group">
-                <label for="lastname" class="col-form-label"></label>
-                <select th:field="*{lastname}" id="lastname" class="btn btn-outline highlighted">
-                    <option  th:each="pat : ${patients}" th:value="${pat.lastname}"
-                            th:text="${pat.lastname}"></option>
-                </select>
-                <button class="btn btn-outline highlighted" type="submit" id="submit"><i class="fas fa-spinner"></i></button>
-            </div>
-        </form>
-    </div>
-</section>-->
-
 <section>
-    <div class="container">
+    <div th:if="${lastnames} != null" class="container">
         <!--displays by lastname-->
         <div class="row mt-3"><p><i class="fas fa-users ocean"> Select a patient by lastname to display it's report</i>
         </p></div>

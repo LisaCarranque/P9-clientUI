@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
     }
 }
 
@@ -32,7 +32,7 @@ targetCompatibility = 1.8
 
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.20'
-    compile('org.springframework.boot:spring-boot-starter-web') 
+    compile('org.springframework.boot:spring-boot-starter-web')
     compile("org.springframework.boot:spring-boot-starter-actuator")
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.6'
     implementation 'org.webjars:bootstrap:5.1.3'

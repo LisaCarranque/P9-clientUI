@@ -75,6 +75,14 @@ services:
       mysql:
         condition: service_healthy
 
+  analyzedata:
+    container_name: analyzedata
+    image: analyzedata
+    ports:
+      - "9105:9105"
+    networks:
+      docker-net:
+        ipv4_address: ${IP_ANALYZE_PATIENT}
 
   client-ui:
     container_name: client-ui
@@ -83,7 +91,7 @@ services:
       - "8080:8080"
     networks:
       docker-net:
-        ipv4_address: ${IP_ANALYZE}
+        ipv4_address: ${IP_CLIENT_UI}
 
 networks:
   docker-net:

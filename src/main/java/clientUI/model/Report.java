@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
 /**
- * The model for patients gathering their personal information
+ * The model for the report e.g. the outcome of the analysis of patient information and related notes
  */
 @Generated
 @Builder
@@ -14,9 +14,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Patient {
+public class Report {
 
-    Integer id;
+    Probability probability;
     @NotEmpty
     @NonNull
     String firstname;
@@ -24,15 +24,15 @@ public class Patient {
     @NonNull
     String lastname;
     @NonNull
-    Gender gender;
+    String birthdate;
+    @NonNull
+    String gender;
     @NotEmpty
     @NonNull
     String address;
     @NotEmpty
     @NonNull
     String phone;
-    @NonNull
-    String birthdate;
     UUID uuid;
 
 }

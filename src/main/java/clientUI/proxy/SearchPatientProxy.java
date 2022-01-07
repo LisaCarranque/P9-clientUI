@@ -15,10 +15,10 @@ import java.util.List;
 @Generated
 public interface SearchPatientProxy {
 
-    @RequestMapping("/patient/list")
+    @GetMapping("/patient/list")
     public List<Patient> home();
 
-    @RequestMapping("/patient/add")
+    @PostMapping("/patient/add")
     public Patient addPatientInformation(@RequestBody Patient patient);
 
     @GetMapping("/patient/update/{id}")
@@ -27,16 +27,16 @@ public interface SearchPatientProxy {
     @PostMapping("/patient/update")
     public Patient validateUpdate(@RequestBody Patient patient);
 
-    @RequestMapping("/patient/get/{id}")
+    @GetMapping("/patient/get/{id}")
     public Patient getPatientById(@PathVariable String id);
 
-    @RequestMapping("/patient/getAll")
+    @GetMapping("/patient/getAll")
     public List<Patient> getAll();
 
-    @RequestMapping("/patient/getAllDistinctLastnames")
+    @GetMapping("/patient/getAllDistinctLastnames")
     public List<String> findAllDistinctLastnames();
 
-    @RequestMapping("/patient/get/{lastname}")
+    @GetMapping("/patient/get/{lastname}")
     public List<Patient> getPatientByLastname(@PathVariable String lastname);
 
 }

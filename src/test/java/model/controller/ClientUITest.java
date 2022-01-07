@@ -123,8 +123,6 @@ public class ClientUITest {
                 .phone("0000000000").birthdate("2002-12-02").address("1st street").lastname("Smith").firstname("Leonie").probability(Probability.BORDERLINE)
                 .uuid(UUID.randomUUID()).gender("F").build());
         clientUI.analyzePatient(model, "1");
-        assertTrue(model.containsAttribute("lastnames"));
-        assertNull(model.asMap().get("lastnames"));
         verify(analyzeDataProxy, times(1)).analyzePatientData("1");
     }
 

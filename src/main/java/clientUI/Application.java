@@ -1,5 +1,6 @@
 package clientUI;
 
+import clientUI.proxy.AnalyzeDataProxy;
 import clientUI.proxy.MedicalNotesProxy;
 import clientUI.proxy.SearchPatientProxy;
 import lombok.Generated;
@@ -12,16 +13,15 @@ import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Locale;
 
-
 /**
  * The main class for this clientUI microservice
  */
-@Generated
 @Slf4j
 @EnableAutoConfiguration
 @SpringBootApplication
 @ComponentScan(basePackages = {"clientUI"})
-@EnableFeignClients(clients = {SearchPatientProxy.class, MedicalNotesProxy.class})
+@EnableFeignClients(clients = {SearchPatientProxy.class, MedicalNotesProxy.class, AnalyzeDataProxy.class})
+@Generated
 public class Application {
 
     public static void main(String[] args) {

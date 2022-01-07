@@ -1,8 +1,8 @@
-package model;
+package model.controller;
 
 import clientUI.controller.ClientUIController;
-import clientUI.model.Note;
-import clientUI.model.Patient;
+import clientUI.model.*;
+import clientUI.proxy.AnalyzeDataProxy;
 import clientUI.proxy.MedicalNotesProxy;
 import clientUI.proxy.SearchPatientProxy;
 import org.junit.jupiter.api.Test;
@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,6 +30,9 @@ public class ClientUITest {
 
     @Mock
     MedicalNotesProxy medicalNotesProxy;
+
+    @Mock
+    AnalyzeDataProxy analyzeDataProxy;
 
     @InjectMocks
     ClientUIController clientUI;
@@ -53,7 +57,7 @@ public class ClientUITest {
     public void addPatientTest() {
         UUID uuid = UUID.randomUUID();
         Patient patient = Patient.builder().id(1).firstname("John")
-                .lastname("Smith").address("1st street").phone("00000000000").uuid(uuid).birthdate("2002-12-02").genre("M").build();
+                .lastname("Smith").address("1st street").phone("00000000000").uuid(uuid).birthdate("2002-12-02").gender(Gender.M).build();
         clientUI.addPatient(model, patient);
         verify(searchPatientProxy, times(1)).addPatientInformation(patient);
         verify(searchPatientProxy, times(1)).home();
@@ -63,7 +67,7 @@ public class ClientUITest {
     public void updatePatientInformationTest() {
         UUID uuid = UUID.randomUUID();
         Patient patient = Patient.builder().id(1).firstname("John")
-                .lastname("Smith").address("1st street").phone("00000000000").uuid(uuid).birthdate("2002-12-02").genre("M").build();
+                .lastname("Smith").address("1st street").phone("00000000000").uuid(uuid).birthdate("2002-12-02").gender(Gender.M).build();
         clientUI.updatePatientInformation(model, "1");
         verify(searchPatientProxy, times(1)).updatePatientInformation("1");
     }
@@ -72,7 +76,7 @@ public class ClientUITest {
     public void validateUpdateSearchPatientTest() {
         UUID uuid = UUID.randomUUID();
         Patient patient = Patient.builder().id(1).firstname("John")
-                .lastname("Smith").address("1st street").phone("0000000000").uuid(uuid).birthdate("2002-12-02").genre("M").build();
+                .lastname("Smith").address("1st street").phone("0000000000").uuid(uuid).birthdate("2002-12-02").gender(Gender.M).build();
         clientUI.validateUpdate(model, patient);
         verify(searchPatientProxy, times(1)).validateUpdate(patient);
         verify(searchPatientProxy, times(1)).home();
@@ -111,5 +115,31 @@ public class ClientUITest {
         verify(medicalNotesProxy, times(1)).findNotesByUuid(String.valueOf(note.getUuid()));
     }
 
+
+    //Analyze
+    @Test
+    public void analyzePatientTest() {
+        when(analyzeDataProxy.analyzePatientData("1")).thenReturn(Report.builder()
+                .phone("0000000000").birthdate("2002-12-02").address("1st street").lastname("Smith").firstname("Leonie").probability(Probability.BORDERLINE)
+                .uuid(UUID.randomUUID()).gender("F").build());
+        clientUI.analyzePatient(model, "1");
+        verify(analyzeDataProxy, times(1)).analyzePatientData("1");
+    }
+
+    @Test
+    public void analyzePatientByLastnameTest() {
+        UUID uuid = UUID.randomUUID();
+        Patient patient = Patient.builder().uuid(uuid).id(1).address("1st street").gender(Gender.F)
+                .phone("0000000000").birthdate("2002-12-02").lastname("Smith")
+                .firstname("Leonie").build();
+        clientUI.analyzePatientByLastname(patient, model);
+        verify(analyzeDataProxy, times(1)).analyzePatientDataByLastname("Smith");
+    }
+
+    @Test
+    public void analyzeAllPatientsTest() {
+        clientUI.analyzeAllPatients(model);
+        verify(analyzeDataProxy, times(1)).analyzeAllPatientData();
+    }
 
 }

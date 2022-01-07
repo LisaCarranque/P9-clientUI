@@ -1,8 +1,9 @@
 package clientUI.model;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.*;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
 /**
@@ -14,15 +15,28 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Patient {
 
     Integer id;
+    @NotEmpty
+    @NonNull
+    @Size(min=1, max=40)
     String firstname;
+    @NotEmpty
+    @NonNull
+    @Size(min=1, max=40)
     String lastname;
-    String genre;
+    @NonNull
+    Gender gender;
+    @NotEmpty
+    @NonNull
+    @Size(min=1, max=40)
     String address;
+    @NotEmpty
+    @NonNull
+    @Size(min=1, max=40)
     String phone;
+    @NonNull
     String birthdate;
     UUID uuid;
 

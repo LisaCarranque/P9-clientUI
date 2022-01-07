@@ -3,6 +3,7 @@ package clientUI.proxy;
 import clientUI.config.Generated;
 import clientUI.model.Report;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,10 +21,10 @@ public interface AnalyzeDataProxy {
     @PostMapping("/assess/lastname")
     public List<Report> analyzePatientDataByLastname(@RequestParam String lastname);
 
-    @RequestMapping("/assess")
+    @GetMapping("/assess")
     public Report analyzePatientData(@RequestParam String id);
 
-    @RequestMapping("/assess/all")
+    @GetMapping("/assess/all")
     public List<Report> analyzeAllPatientData();
 
 }

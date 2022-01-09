@@ -55,8 +55,8 @@
             </div>
             <div class="form-group">
                 <label for="content" class="col-sm-2 col-form-label">Content: </label>
-                <input type="text" th:field="*{content}" th:value="note.content" id="content" placeholder="content"
-                       class="col-5" required>
+                <textarea th:field="*{content}" th:value="note.content" id="content" placeholder="content"
+                          class="col-5" required></textarea>
                 </span>
             </div>
             <button type="submit" class="btn btn-info mb-5">Update</button>

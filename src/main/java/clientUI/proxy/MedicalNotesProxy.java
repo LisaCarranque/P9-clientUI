@@ -3,6 +3,7 @@ package clientUI.proxy;
 import clientUI.config.Generated;
 import clientUI.model.Note;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 public interface MedicalNotesProxy {
 
     @PostMapping("/patientHistory/add")
-    public Note addNote(@RequestBody Note note);
+    public ResponseEntity<Note> addNote(@RequestBody Note note);
 
     @GetMapping("/patientHistory/update/{id}")
     public Note updateNoteInformation(@PathVariable String id);

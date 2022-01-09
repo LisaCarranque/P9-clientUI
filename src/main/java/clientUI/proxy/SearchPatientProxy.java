@@ -3,6 +3,7 @@ package clientUI.proxy;
 import clientUI.config.Generated;
 import clientUI.model.Patient;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface SearchPatientProxy {
     public List<Patient> home();
 
     @PostMapping("/patient/add")
-    public Patient addPatientInformation(@RequestBody Patient patient);
+    public ResponseEntity<Patient> addPatientInformation(@RequestBody Patient patient);
 
     @GetMapping("/patient/update/{id}")
     public Patient updatePatientInformation(@PathVariable String id);
